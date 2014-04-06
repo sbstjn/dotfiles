@@ -17,3 +17,5 @@ source ~/.dotfiles/bash_rc" >> ~/.bash_profile
 
 source ~/.dotfiles/system/osx
 source ~/.bash_profile
+
+source ~/.dotfiles/system/osx_fonts

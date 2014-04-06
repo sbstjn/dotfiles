@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Create tmp directory
+mkdir ~/.dotfiles/tmp
+cd ~/.dotfiles/tmp
+
+# Download Adobe Font tools
+curl -O http://download.macromedia.com/pub/developer/opentype/FDK-25-MAC.zip
+unzip FDK-25-MAC.zip
+~/.dotfiles/tmp/FDK/FinishInstallOSX
+
+# Refresh PATH settings for FDK
+source ~/.bash_profile
+
+# Clone Source Code Pro from Adobe
+git clone https://github.com/adobe/source-code-pro.git
+cd source-code-pro
+./build.sh
+
+# Copy built fonts to user's font directory
+cp ~/.dotfiles/tmp/source-code-pro/target/TTF/*.ttf ~/Library/Fonts/
+
+# Cleanup
+rm -rf ~/.dotfiles/tmp
+rm -rf ~/bin/FDK
+
+# Remove mess if needed
+if [ "$(ls -A ~/bin)" ]; then
+	 echo "~/bin not empty. Leaving directory …" 
+else
+	rm -rf ~/bin
+fi
